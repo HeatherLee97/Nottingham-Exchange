@@ -38,6 +38,21 @@ export FLASK_APP=app.py  # or your main Flask file
 Start npm (e.g., React or other frontend app):
 npm start
 
+***********************************************************************************************************************
+
+Create your own branch to edit and work, PLEASE DO NOT DO WORK ON THE MAIN BRANCH, and please make sure any changes you make are running properly before pushing to main. 
+Before editing your branch, PULL ORIGIN MAIN, and before pushing your work pull from main
+
+**********************************************************************************************************************
+******************************************************
+**********************************************
+
+RENDER
+https://nottingham-exchange.onrender.com
+
+*********************************************
+*****************************************************
+
 
 Required Design Documents
 The following documentation is required for your group project.
