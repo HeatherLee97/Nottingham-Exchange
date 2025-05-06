@@ -90,3 +90,6 @@ Adequate styling
 Smooth, bug-free navigation
 Adequate and appropriate seed data to demonstrate the feature
 In order for this to be considered complete, you must have the first three criteria completed. In addition to that, you will also need to have four of your features demonstrating the checklist under item 4. After the following section is a list of required features if you decide to clone one of the sites from the list above.
+
+
+
