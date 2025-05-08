@@ -1,110 +1,131 @@
-# Nottingham-Exchange
+# Flask React Project
 
- Set Up Python & Flask
- Activate the virtual environment:
+This is the starter for the Flask React project.
 
-Windows:
+## Getting started
 
-venv\Scripts\activate
+1. Clone this repository (only this branch).
 
-macOS/Linux:
-source venv/bin/activate
+2. Install dependencies.
 
+   ```bash
+   pipenv install -r requirements.txt
+   ```
 
-Install Flask and other Python dependencies:
-pip install -r requirements.txt
+3. Create a __.env__ file based on the example with proper settings for your
+   development environment.
 
+4. Make sure the SQLite3 database connection URL is in the __.env__ file.
 
-If there's no requirements.txt, you can install Flask manually:
-pip install flask
+5. This starter organizes all tables inside the `flask_schema` schema, defined
+   by the `SCHEMA` environment variable.  Replace the value for
+   `SCHEMA` with a unique name, **making sure you use the snake_case
+   convention.**
 
+6. Get into your pipenv, migrate your database, seed your database, and run your
+   Flask app:
 
-Set Up npm
-Navigate to the frontend or relevant folder (if applicable):
-cd frontend
+   ```bash
+   pipenv shell
+   ```
 
+   ```bash
+   flask db upgrade
+   ```
 
-Install npm dependencies:
-npm install
+   ```bash
+   flask seed all
+   ```
 
-Run the Project
-Start Flask Server:
-From the root directory (or wherever your Flask app lives):
-flask run
+   ```bash
+   flask run
+   ```
 
-Make sure your FLASK_APP is set. You can export it like so:
-export FLASK_APP=app.py  # or your main Flask file
+7. The React frontend has no styling applied. Copy the __.css__ files from your
+   Authenticate Me project into the corresponding locations in the
+   __react-vite__ folder to give your project a unique look.
 
-Start npm (e.g., React or other frontend app):
-npm start
+8. To run the React frontend in development, `cd` into the __react-vite__
+   directory and run `npm i` to install dependencies. Next, run `npm run build`
+   to create the `dist` folder. The starter has modified the `npm run build`
+   command to include the `--watch` flag. This flag will rebuild the __dist__
+   folder whenever you change your code, keeping the production version up to
+   date.
 
-***********************************************************************************************************************
+## Deployment through Render.com
 
-Create your own branch to edit and work, PLEASE DO NOT DO WORK ON THE MAIN BRANCH, and please make sure any changes you make are running properly before pushing to main. 
-Before editing your branch, PULL ORIGIN MAIN, and before pushing your work pull from main
+First, recall that Vite is a development dependency, so it will not be used in
+production. This means that you must already have the __dist__ folder located in
+the root of your __react-vite__ folder when you push to GitHub. This __dist__
+folder contains your React code and all necessary dependencies minified and
+bundled into a smaller footprint, ready to be served from your Python API.
 
-**********************************************************************************************************************
-******************************************************
-**********************************************
+Begin deployment by running `npm run build` in your __react-vite__ folder and
+pushing any changes to GitHub.
 
-RENDER
-https://nottingham-exchange.onrender.com
+Refer to your Render.com deployment articles for more detailed instructions
+about getting started with [Render.com], creating a production database, and
+deployment debugging tips.
 
-*********************************************
-*****************************************************
+From the Render [Dashboard], click on the "New +" button in the navigation bar,
+and click on "Web Service" to create the application that will be deployed.
 
+Select that you want to "Build and deploy from a Git repository" and click
+"Next". On the next page, find the name of the application repo you want to
+deploy and click the "Connect" button to the right of the name.
 
-Required Design Documents
-The following documentation is required for your group project.
+Now you need to fill out the form to configure your app. Most of the setup will
+be handled by the __Dockerfile__, but you do need to fill in a few fields.
 
-Features List / MVP
-DataBase Schema (both tables and the diagram with relationships)
-User Stories
-Scrum Board (either Github projects or something like Trello/Asana/Habitica)
-Wire Frames (if you are making an original site)
-All Documentation needs to be added to your project repo's wiki page. Do NOT make or add this info to a README.md in your repo, the project starter will come with a very important README.md that we will merge in to our group project repos. If you have something ready for review, let your advisor know (in your group's slack channel). Do not move on to the next documentation deliverable without getting the previous one approved (if your feature list is not approved, don't start on the DB schema)
+Start by giving your application a name.
 
-Daily Planning Schedule
-The following schedule is when your different design documents are due throughout the week(s) leading up to the project week(s):
+Make sure the Region is set to the location closest to you, the Branch is set to
+"main", and Runtime is set to "Docker". You can leave the Root Directory field
+blank. (By default, Render will run commands from the root directory.)
 
-Full-Time
-Day	Tasks to Work On	Design Docs Due
-Monday	Select Project, Feature List	What site to clone
-Tuesday	Feature List, DB Schema	Feature List
-Wednesday	DB Schema, User Stories	DB Schema
-Thursday	User Stories, Wire Frames (if your site is original)Set up Scrum Board (GitHub Projects)	User Stories
-Friday	Release & Review Project Starter	Scrum Board
-Code, code, code!
-Once those are done, your team is set up for success! Determine whether you want to work on features together, one at a time, or have pairs work on features together, or if everyone in the group gets their own feature.
+Select "Free" as your Instance Type.
 
-Be smart about your Git workflow. Create branches, commit to them, then create Pull Requests on GitHub to let others see your changes.
+### Add environment variables
 
-Your group needs to commit AT LEAST twice per day with substantial code.
+In the development environment, you have been securing your environment
+variables in a __.env__ file, which has been removed from source control (i.e.,
+the file is gitignored). In this step, you will need to input the keys and
+values for the environment variables you need for production into the Render
+GUI.
 
-Coordinate many times per day so everyone knows what's going on.
+Add the following keys and values in the Render GUI form:
 
-Keep up the communication.
+- SECRET_KEY (click "Generate" to generate a secure secret for production)
+- FLASK_ENV production
+- FLASK_APP app
+- SCHEMA (your unique schema name, in snake_case)
 
-Don't let someone fail. This is a team effort.
+In a new tab, navigate to your dashboard and click on your Postgres database
+instance.
 
-Evaluating your completion
-Full-stack projects will be evaluated against the following "Minimal Viable Product" features.
+Add the following keys and values:
 
-New account creation, login, and guest/demo login
-A production README file for your GitHub repository containing
-Brief explanation of what the app is and does
-Link to live site
-Discussion of technologies used
-Discussion of two features that show off the team's technical abilities
-Discussion of both challenges faced and the way the team solved them
-Code snippets to highlight the best code
-Hosting on Render.com
-For four features:
-2 features must be full CRUD, the other 2 features can be partial CRUD
-Adequate styling
-Smooth, bug-free navigation
-Adequate and appropriate seed data to demonstrate the feature
-In order for this to be considered complete, you must have the first three criteria completed. In addition to that, you will also need to have four of your features demonstrating the checklist under item 4. After the following section is a list of required features if you decide to clone one of the sites from the list above.
+- DATABASE_URL (copy value from the **External Database URL** field)
 
+**Note:** Add any other keys and values that may be present in your local
+__.env__ file. As you work to further develop your project, you may need to add
+more environment variables to your local __.env__ file. Make sure you add these
+environment variables to the Render GUI as well for the next deployment.
 
+### Deploy
 
+Now you are finally ready to deploy! Click "Create Web Service" to deploy your
+project. The deployment process will likely take about 10-15 minutes if
+everything works as expected. You can monitor the logs to see your Dockerfile
+commands being executed and any errors that occur.
+
+When deployment is complete, open your deployed site and check to see that you
+have successfully deployed your Flask application to Render! You can find the
+URL for your site just below the name of the Web Service at the top of the page.
+
+**Note:** By default, Render will set Auto-Deploy for your project to true. This
+setting will cause Render to re-deploy your application every time you push to
+main, always keeping it up to date.
+
+[Render.com]: https://render.com/
+[Dashboard]: https://dashboard.render.com/
