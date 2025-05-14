@@ -13,7 +13,7 @@
 .header__search {
     display: flex;
     height: 40px;
-    padding: 10 px;
+    padding: 10px;
     align-items: center;
 }
 
@@ -21,7 +21,7 @@
     height: 20px;
     border: 1px solid #31363a;
     border-radius: 4px;
-    width: 375px;
+    width: 455px;
     color: white;
 }
 .header__searchContainer > input {
@@ -34,4 +34,16 @@
 
 .header__searchContainer > input:focus {
     outline: none;
+}
+
+.header__menuItems {
+    margin-left: 48px;
+    margin-right: 48px;
+}
+
+.header__menuItems a {
+    color: rgb(20, 20, 20);
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0 10px
 }

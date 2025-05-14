@@ -13,7 +13,7 @@ const Dashboard = () => {
 
       {/* Body */}
       <main className="dashboard-body">
-        {/* You can add routing or components here */}
+        {/* add routing or components here */}
       </main>
     </div>
   );
