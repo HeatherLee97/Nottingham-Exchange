@@ -14,21 +14,21 @@ function Header() {
       {/* Search */}
       <div className="header__search">
         <div className="header__searchContainer">
-          <SearchIcon className="searchIcon" />
+          {/* <SearchIcon className="SearchIcon" /> */}
           <input
             type="text"
             placeholder="Search"
-            aria-label="Search stocks"
+            aria-label="Stocks"
           />
         </div>
       </div>
 
       {/* Menu Items */}
       <nav className="header__menuItems">
-        <a href="#">Free Stocks</a>
+        <a href="#">Stocks</a>
         <a href="#">Portfolio</a>
         <a href="#">Cash</a>
-        <a href="#">Messages</a>
+        <a href="#">Watchlist</a>
         <a href="#">Account</a>
       </nav>
     </header>
