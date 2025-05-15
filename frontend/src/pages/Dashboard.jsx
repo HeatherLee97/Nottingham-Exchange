@@ -3,18 +3,25 @@ import React from 'react';
 import './Dashboard.css';
 import Header from './Header';
 
+
 const Dashboard = () => {
   return (
     <div className="dashboard">
       {/* Header */}
-      <header className="dashboard-header">
+      <div className="dashboard_header">
         <Header />
-      </header>
+        </div>
 
-      {/* Body */}
-      <main className="dashboard-body">
-        {/* add routing or components here */}
-      </main>
+      
+      <div className="dashboard_body">
+        <div className="dashboard_container">
+            <Newsfeed />
+
+        </div>
+
+      </div>
+        {/* Body */}
+      
     </div>
   );
 };

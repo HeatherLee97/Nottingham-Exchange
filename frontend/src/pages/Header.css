@@ -30,6 +30,7 @@
     width: 100%;
     margin-left: 5px;
     margin-right: 5px;
+    color: rgb(14, 14, 14);
 }
 
 .header__searchContainer > input:focus {
@@ -42,8 +43,12 @@
 }
 
 .header__menuItems a {
-    color: rgb(20, 20, 20);
+    color: rgb(19, 18, 18);
     font-weight: bold;
     text-decoration: none;
     padding: 0 10px
+}
+
+.header__menuItems a:hover {
+    color: rgb(25, 96, 227);
 }
