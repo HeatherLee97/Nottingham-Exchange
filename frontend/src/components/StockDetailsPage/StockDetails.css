@@ -1,0 +1,61 @@
+.stock-details {
+    max-width: 800px;
+    padding: 40px 20px;
+    color: black;
+    background-color: #b972ad;
+  }
+  
+  .stock-details h2 {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  
+  .stock-details p {
+    font-size: 24px;
+  }
+  
+  .up {
+    color: green;
+    font-weight: 600;
+  }
+  
+  .down {
+    color: red;
+    font-weight: 600;
+  }
+  
+  .stock-actions {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .buy-button {
+    background-color: green;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .buy-button:hover {
+    background-color: #077a4a;
+  }
+
+  .watch-button {
+    background-color: white;
+    color: #1c1c1e;
+    border: 2px solid #ccc;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .watch-button:hover {
+    border-color: #636161;
+  }
