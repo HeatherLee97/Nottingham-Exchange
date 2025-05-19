@@ -2,17 +2,33 @@ import React from 'react';
 import { Chart } from 'react-charts';
 
 const StockChart = ({ data }) => {
-  const axes = React.useMemo(
+  const primaryAxis = React.useMemo(
+    () => ({
+      getValue: datum => datum.date,
+      scaleType: 'time',
+    }),
+    []
+  );
+
+  const secondaryAxes = React.useMemo(
     () => [
-      { primary: true, type: 'time', position: 'bottom' },
-      { type: 'linear', position: 'left' },
+      {
+        getValue: datum => datum.value,
+        scaleType: 'linear',
+      },
     ],
     []
   );
 
   return (
-    <div style={{ width: '100%', height: '300px' }}>
-      <Chart data={data} axes={axes} tooltip />
+    <div style={{ width: '100%', height: '300px ', marginBottom: '80px' }}>
+      <Chart
+        options={{
+          data,
+          primaryAxis,
+          secondaryAxes,
+        }}
+      />
     </div>
   );
 };
