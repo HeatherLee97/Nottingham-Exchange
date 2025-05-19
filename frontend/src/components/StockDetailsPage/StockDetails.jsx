@@ -1,19 +1,20 @@
-import React from 'react';
+
 import StockChart from './StockChart';
 import './StockDetails.css';
 
 const StockDetails = () => {
-  const chartData = [
-    {
-      label: 'AALC',
-      data: [
-        [new Date('2025-05-13'), 170],
-        [new Date('2025-05-14'), 174],
-        [new Date('2025-05-15'), 169],
-        [new Date('2025-05-16'), 175],
-      ]
-    }
-  ];
+const chartData = [
+  {
+    label: 'AALC',
+    data: [
+      { date: new Date('2025-05-13'), value: 170 },
+      { date: new Date('2025-05-14'), value: 174 },
+      { date: new Date('2025-05-15'), value: 169 },
+      { date: new Date('2025-05-16'), value: 175 },
+    ],
+  },
+];
+  
 
   return (
     <div className="stock-details">
@@ -21,7 +22,8 @@ const StockDetails = () => {
       <p>$175.02 <span className="up">+2 (1%)</span></p>
       <StockChart data={chartData} />
       <div className="stock-actions">
-      <button className="buy-button">Buy</button>
+      <input id="buy-quantity" type="number" min="1" placeholder="Quantity" />
+      <button >Buy</button>
       <button className="watch-button">Watch</button>
       </div>
     </div>
