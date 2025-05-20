@@ -1,7 +1,9 @@
 instance/*
-instance
-node_modules
-.env
-.venv
-dev.db
+./backend/instance
+./frontend/node_modules
+./backend/.env
+./backend/.venv
+./backend/dev.db
 .gitignore
+.git
+

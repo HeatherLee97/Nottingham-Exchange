@@ -11,6 +11,7 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,6 +28,35 @@ function LoginFormModal() {
       closeModal();
     }
   };
+
+const demoUser = (e) => {
+  e.preventDefault();
+  return dispatch(thunkLogin({
+     email: "demo@user.io";
+    password: "password";
+  }))
+  .then(closeModal)
+  .then(navigate('/dashboard'))
+  };
+
+  const demoUser2 = (e) => {
+    e.preventDefault();
+    return dispatch(thunkLogin({
+        email: 'barbiegirl@aa.io',
+        password: 'password'
+    }))
+    .then(closeModal)
+    .then(navigate('/dashboard'))
+  };
+
+  const demoUser3 = (e) => {
+    e.preventDefault();
+    return dispatch(thunkLogin({
+      email: ''
+    }))
+    .then(closeModal)
+    .then(navigate('/dashboard'))
+  }
 
   return (
     <>

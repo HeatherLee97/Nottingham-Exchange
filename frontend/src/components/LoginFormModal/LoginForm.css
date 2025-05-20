@@ -1,0 +1,12 @@
+.login-container {
+    width: 400px;
+    height: 230px;
+    border-radius: 10px;
+}
+
+.submit-button-login {
+    background-color: purple;
+    color: white;
+    width: 96%;
+}
+
