@@ -9,6 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
+from .api.portfolio_routes import portfolio_routes
 
 app = Flask(__name__, static_folder='../../frontend/dist', static_url_path='/')
 
