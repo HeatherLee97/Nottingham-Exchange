@@ -7,7 +7,7 @@ import 'react-tabs/style/react-tabs.css';
 import './Watchlist.css';
 import EditWatchlistForm from '../EditWatchlistForm';
 
-import WatchlistMenu from './watchlistMenu';
+import WatchlistMenu from './WatchlistMenu';
 
 const WatchlistList = ({ quotes }) => {
   const dispatch = useDispatch();
