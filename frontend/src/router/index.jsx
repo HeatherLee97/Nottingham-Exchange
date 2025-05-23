@@ -7,12 +7,9 @@ import Dashboard from '../pages/Dashboard';
 
 export const router = createBrowserRouter([
   {
-    element: <Layout />,
+    path: "/",
+    element: <App />,
     children: [
-      {
-        path: "/",
-        element: <h1>Welcome!</h1>,
-      },
       {
         path: "login",
         element: <LoginFormPage />,
@@ -24,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "stocks",
         element: <StockDetails />,
+      },
+      {
+        path: "dashboard", // Add the Dashboard route
+        element: <Dashboard />,
       },
     ],
   },
