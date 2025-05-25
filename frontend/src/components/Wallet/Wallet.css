@@ -1,0 +1,180 @@
+/*
+h2 {
+  color: blue
+}
+ */
+
+ .linked-accounts-table {
+    display: inline-block;
+  }
+ 
+  .linked-accounts-table thead th {
+    margin-right: 30px;
+  }
+ 
+  .table-outer-container {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+ 
+ 
+  .table-inner-container {
+    /* border: 2px solid orange; */
+    padding: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 750px;
+  }
+ 
+  .table-inner-container th {
+   padding: 10px;
+  }
+ 
+  .table-inner-container td {
+   padding-left: 10px;
+  }
+ 
+ 
+  .table-inner-container button {
+    margin: 5px;
+    height: 20px;
+  }
+ 
+  .form-outer-container {
+   /* border: 2px solid green; */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+ 
+  /* .form-inner-container {
+   border: 2px solid orange;
+   display: flex;
+   flex-direction: column;
+ } */
+ 
+ .wallet {
+   /* background-color: rgb(255, 164, 164); */
+   border: 2px rgb(0, 141, 71) solid;
+   padding: 30px;
+   width: 400px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   border-radius: 20px;
+ }
+ 
+ .wallet-form:hover {
+   box-shadow: 0 0 5px 0.1em rgb(0, 141, 71);
+ }
+ 
+ .form-container {
+   margin-top: 50px;
+ }
+ 
+ .sub-container {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+ }
+ 
+ .wallet-form input {
+   width: 220px;
+   height: 25px;
+ }
+ 
+ .wallet-form select {
+   width: 220px;
+   height: 25px;
+ }
+ 
+ .wallet-form label {
+   display: flex;
+   align-items: flex-start;
+   flex-direction: column;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 16px;
+ }
+ 
+ label {
+   padding-top: 10px;
+   padding-bottom: 10px;
+ }
+ 
+ 
+ .wallet-errors {
+   color: red;
+   font-size: 14px;
+ }
+ 
+ 
+ .wallet-button {
+   margin-top: 20px;
+   margin-bottom: 20px;
+   margin-right: 20px;
+   text-decoration: none;
+   color: rgb(0, 200, 5);
+   display: inline;
+   font-family: helvetica;
+   border: solid rgb(0, 200, 5) 1px;
+   border-radius: 3px;
+   background-color: black;
+ }
+ 
+ .wallet-button:hover{
+   background-color: rgb(0, 200, 5);
+   color: black;
+   cursor: pointer;
+ }
+ 
+ .add-wallet-button {
+   margin-top: 20px;
+   margin-bottom: 20px;
+   margin-right: 20px;
+   width: 90px;
+   height: 30px;
+   font-size: 14px ;
+   text-decoration: none;
+   color: rgb(0, 200, 5);
+   display: inline;
+   font-family: helvetica;
+   border: solid rgb(0, 200, 5) 1px;
+   border-radius: 3px;
+   background-color: black;
+ }
+ 
+ .add-wallet-button:hover{
+   background-color: rgb(0, 200, 5);
+   color: black;
+   cursor: pointer;
+ }
+ 
+ .submit-button {
+   text-decoration: none;
+   color: white;
+   display: inline;
+   font-family: helvetica;
+   border: solid black 1px;
+   border-radius: 3px;
+   background-color: black;
+ }
+ 
+ .submit-button:hover{
+   background-color: white;
+   color: black;
+   box-shadow: 1px 1px .2em rgb(170, 170, 170);
+   cursor: pointer;
+ }
+ 
+ 
+ .add-money-container .modal-content{
+   background-color: var(--rh-dark-base);
+   border: 1px solid var(--rh-dark-base2);
+   border-radius: 5px;
+   padding: 1rem;
+   color: white;
+ }

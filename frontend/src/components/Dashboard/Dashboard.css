@@ -34,54 +34,54 @@
 
 }
 
-.buyingPowerContainer {
+.MoneyContainer {
   border-radius: 4px;
   padding: 0 24px;
   margin: 0 -24px;
 }
 
-.bpHeader, .bpDetails>div {
+.mHeader, .mDetails>div {
   padding: 24px 0;
 }
 
-.bpHeader, .cash {
+.mHeader, .cash {
   border-bottom: 1px solid var(--rh-dark-border);
 }
 
-.bpHeader, .cash, .power {
+.mHeader, .cash, .power {
   display: flex;
   justify-content: space-between;
 }
 
-.bpHeader {
+.mHeader {
   font-size: 15px;
   font-weight: 700;
 }
 
-.bpBody {
+.mBody {
   padding-bottom: 24px;
   display: flex;
   justify-content: space-between;
   font-size: 15px;
 }
 
-.bpDetails {
+.mDetails {
   min-width: 45%;
   display: flex;
   flex-direction: column;
 }
 
-.bpMessage {
+.mMessage {
   padding: 24px;
   padding-left: 36px;
   line-height: 24px;
 }
 
-.buyingPowerContainer:hover, .buyingPowerContainer.selected {
+.moneyContainer:hover, .moneyContainer.selected {
   background-color: var(--rh-dark-base);
 }
 
-.bpHeader:hover {
+.mHeader:hover {
   cursor: pointer;
 }
 

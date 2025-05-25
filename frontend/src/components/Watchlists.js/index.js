@@ -28,9 +28,9 @@ const WatchlistList = ({ quotes }) => {
 
   const toggleShowEditModal = (e, watchlist) => {
     setShowEditModal(true);
-    // console.log();
+    
     setActiveEditWatchlist(watchlist);
-    // console.log(watchlist);
+    
   };
   const deleteWatchlist = async (e, watchlist) => {
     await dispatch(deleteWatchlistReducer(watchlist.id));
@@ -54,7 +54,7 @@ const WatchlistList = ({ quotes }) => {
     menu = <WatchlistMenu watchlist={activeEditWatchlist}></WatchlistMenu>;
   }
   return (
-    <div className='watchlistListContainer'>
+    <div className='watchlist_List_Container'>
       <div>
         <button className={'createWatchlistButton'} onClick={toggleCreateWatchlistForm}>
           {createWatchlistText}

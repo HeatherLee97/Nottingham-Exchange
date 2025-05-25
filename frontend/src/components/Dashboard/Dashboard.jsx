@@ -27,7 +27,7 @@ const Dashboard = () => {
   const assetSymbols = assetList.map(asset => asset.symbol);
   const watchlists = Object.values(useSelector(state => state.portfolio.watchlists));
 
-  const bp = useSelector(state => state.portfolio.buying_power).toLocaleString('en-US', {
+  const m = useSelector(state => state.portfolio.money).toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
   });
@@ -148,28 +148,28 @@ const Dashboard = () => {
               />
             )}
           </div>
-          <div className={'buying_Power_Container' + `${showMenu ? ' selected' : ''}`}>
-            <div className='bpHeader noSelect' onClick={() => setShowMenu(!showMenu)}>
-              <span>Buying Power</span>
-              {!showMenu && <span>{bp}</span>}
+          <div className={'money_Container' + `${showMenu ? ' selected' : ''}`}>
+            <div className='mHeader noSelect' onClick={() => setShowMenu(!showMenu)}>
+              <span>Money</span>
+              {!showMenu && <span>{m}</span>}
             </div>
             {showMenu && (
-              <div className='bpBody'>
-                <div className='bpDetails'>
+              <div className='mBody'>
+                <div className='mDetails'>
                   <div className='cash'>
                     <span>Brokerage Cash</span>
-                    <span>{bp}</span>
+                    <span>{m}</span>
                   </div>
-                  <div className='power'>
-                    <span>Buying Power</span>
-                    <span>{bp}</span>
+                  <div className='money'>
+                    <span>Money</span>
+                    <span>{m}</span>
                   </div>
                   <Link className='btn btn-filled deposit' to='/add-funds'>
                     Deposit Funds
                   </Link>
                 </div>
-                <div className='bpMessage'>
-                  Buying Power represents the total value of assets you can purchase.
+                <div className='mMessage'>
+                  Money represents the total value of assets you can purchase.
                 </div>
               </div>
             )}
