@@ -1,0 +1,62 @@
+.errorsContainer{
+    color: red;
+}
+
+
+#titleInput{
+    width: 300px !important;
+    height: 3rem;
+    margin: .5rem;
+    font-size: 20px;
+    border-radius: 1px solid var(--rh-dark-base2) ;
+    background-color: black;
+    color: white;
+}
+.edit_Watchlist{
+    display: flex;
+    justify-content: center;
+}
+.edit_watchlist_container .modal-content{
+    background-color: var(--rh-dark-base);
+    border: 1px solid var(--rh-dark-base2);
+    border-radius: 5px;
+    padding: 1rem;
+}
+.edit_watchlist_container .modal-content:hover{
+    cursor:default;
+}
+
+.edit_watchlist_container .button {
+    background-color: black;
+    color: white;
+    padding: 0.5rem;
+    height: 3rem;
+    width: 8rem;
+    border: 1px solid var(--rh-dark-base2);
+    border-radius: 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.edit_watchlist_container h4 {
+    color: white;
+    font-size: 1.2rem;
+}
+
+#submit_Edit_Watchlist{
+    width: 6rem;
+    border-radius: 1.5rem;
+    font-size: 1rem;
+    margin: 0.5rem;
+    background-color: var(--rh-dark-base);
+    border: 1px solid var(--rh-dark-base2);
+    padding: 5px;
+    color: white;
+    height: 3rem;
+    cursor: pointer;
+}
+
+.edit_watchlist_container .errorsContainer {
+    font-weight: normal;
+    font-size: medium;
+}

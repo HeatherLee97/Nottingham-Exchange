@@ -1,9 +1,9 @@
-import React from "react";
+// import React from "react";
 import WatchlistWidget from "../WatchlistWidget";
-import StockChart from "../..components/StockDetailsPage/StockChart";
+// import StockChart from "../..components/StockDetailsPage/StockChart";
 
 import "./UserHomePage.css";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchHistory, clearHistoryState } from "../../store/portfolioHistory";
