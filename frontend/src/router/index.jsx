@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Dashboard from '../components/Dashboard'; 
+// import Dashboard from '../components/Dashboard'; 
 import StockDetails from '../components/StockDetailsPage/StockDetails';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
         children: [
       {
         path: "/",
-        element: <Dashboard />,
+        element: <h1>Welcome!</h1>,
       },
       {
         path: "login",
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
         path: "stock/:stockSymbol", 
         element: <StockDetails />,
       },
+    //   {
+    //     path: "dashboard", 
+    //     element: <Dashboard />,
+    //   },
     ],
   },
 ]);

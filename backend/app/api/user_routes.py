@@ -73,7 +73,13 @@ def buy_user_stocks(user_id, symbol):
         and_(UserStock.owner_id == user.id, UserStock.stock_symbol == stock_symbol)).first()
 
     if user_stock:
-        return {'error': "user already has stock"}, 400
+    total_shares = user_stock.total_shares + shares_bought
+    total_invested = user_stock.total_invested + (shares_bought * price_per_share)
+    average_price = total_invested / total_shares
+
+    user_stock.total_shares = total_shares
+    user_stock.total_invested = total_invested
+    user_stock.average_price_per_share = average_price
 
     isStock = Stock.query.filter(Stock.stock_symbol == stock_symbol).first()
     if isStock == None:
@@ -92,13 +98,13 @@ def buy_user_stocks(user_id, symbol):
         total_invested = price_per_share * shares_bought
 
         new_transaction = Transaction(
-            owner_id = user.id,
-            stock_symbol = stock_symbol,
-            is_buy = True,
-            shares = shares_bought,
-            current_total_stock_shares = shares_bought,
-            current_total_stock_investment = total_invested,
-            price_per_share = price_per_share
+            owner_id=user.id,
+            stock_symbol=stock_symbol,
+            is_buy=True,
+            shares=shares_bought,
+            current_total_stock_shares=total_shares,
+            current_total_stock_investment=total_invested,
+            price_per_share=price_per_share
         )
         new_user_stock = UserStock(
             owner_id = user.id,
