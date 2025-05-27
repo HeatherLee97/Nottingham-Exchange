@@ -84,10 +84,10 @@ def buy_user_stocks(user_id, symbol):
 
     if form.validate_on_submit():
 
-        subtract_buying_power = shares_bought * price_per_share
+        subtract_Wallet_power = shares_bought * price_per_share
 
-        if subtract_buying_power > user.buying_power:
-            return {'error': "Not enough buying power"}, 403
+        if subtract_Wallet_power > user.Wallet_power:
+            return {'error': "Not enough Wallet power"}, 403
 
         total_invested = price_per_share * shares_bought
 
@@ -154,7 +154,7 @@ def update_user_stocks(user_id, stock_id):
         if stock_shares_sold is not None and stock_shares_sold <= 0:
             return {'error': "Shares or amount must be greater than 0"}, 400
 
-        # add the stock shares bought to total shares and update user buying power
+        # add the stock shares bought to total shares and update user Wallet power
         if stock_shares_bought:
 
             subtract_wallet = stock_shares_bought * price_per_share
@@ -169,7 +169,7 @@ def update_user_stocks(user_id, stock_id):
             user_stock.total_invested = total_invested
             user_stock.average_price_per_share = total_invested / added_total_shares
 
-            # change user buying power
+            # change user Wallet power
             new_wallet = user.wallet - subtract_wallet
             user.wallet = float(format(new_wallet, '.2f'))
 
@@ -190,7 +190,7 @@ def update_user_stocks(user_id, stock_id):
                 'userStock': user_stock.to_dict()
             }, 200
 
-        # subtract the stock shares sold and update user buying power
+        # subtract the stock shares sold and update user Wallet power
         if stock_shares_sold:
 
             # subtract sold shares number form total shares of stock
@@ -228,7 +228,7 @@ def update_user_stocks(user_id, stock_id):
             add_wallet = stock_shares_sold * price_per_share
             new_wallet = user.wallet + add_wallet
 
-            user.wallet = float(format(new_buying_power, '.2f'))
+            user.wallet = float(format(new_Wallet_power, '.2f'))
 
             new_transaction = Transaction(
                 owner_id = user.id,
@@ -277,9 +277,9 @@ def sell_user_stocks(user_id, stock_id):
     if form.validate_on_submit():
         price_per_share_sold = form.data["price_per_share_sold"]
 
-        add_buying_power = user_stock.total_shares * price_per_share_sold
-        new_buying_power = user.buying_power + add_buying_power
-        user.buying_power = float(format(new_buying_power, '.2f'))
+        add_Wallet_power = user_stock.total_shares * price_per_share_sold
+        new_Wallet_power = user.Wallet_power + add_Wallet_power
+        user.Wallet_power = float(format(new_Wallet_power, '.2f'))
 
         new_transaction = Transaction(
             owner_id = user.id,

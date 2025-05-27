@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createWatchlist } from '../../store/portfolio/watchlist';
 import { Modal2 } from '../Watchlists/context/Modal';
 import './Watchlist.css';
 
-const CreateWatchlist = ({ hideform,showModal,setShowModal }) => {
+const CreateWatchlist = ({ showModal,setShowModal }) => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
