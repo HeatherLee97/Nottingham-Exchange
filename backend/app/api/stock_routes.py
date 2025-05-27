@@ -56,6 +56,35 @@ def get_stock_info(stock_symbol):
 
     return formatted_res, 200
 
+@stocks_routes.route('/<stock_symbol>/history')
+@login_required
+def get_stock_history(stock_symbol):
+
+    symbol = stock_symbol.upper()
+    interval = '1d'
+    period = '5d'
+
+    try:
+        data = yf.download(tickers=symbol, period=period, interval=interval)
+        print(f"Downloaded data shape: {data.shape}")
+        if data.empty:
+            return jsonify({'error': 'No data found for this stock'}), 404
+
+        close_data = data['Close'].dropna()
+        chart_data = [
+            {'timestamp': ts.isoformat(), 'price': round(price, 2)}
+            for ts, price in close_data.items()
+        ]
+
+        return jsonify({
+            'symbol': symbol,
+            'prices': chart_data
+        }), 200
+
+    except Exception as e:
+        print(f"Error fetching chart data for {symbol}: {e}")
+        return jsonify({'error': 'Failed to fetch chart data'}), 500
+
 @stocks_routes.route('/price/<stock_symbol>')
 @login_required
 def get_stock_price(stock_symbol):
