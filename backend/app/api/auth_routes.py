@@ -25,6 +25,7 @@ def authenticate():
     """
     if current_user.is_authenticated:
         print("user is authenticated")
+        print("user is authenticated")
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
 
@@ -86,4 +87,6 @@ def unauthorized():
     """
     return {'errors': {'message': 'Unauthorized'}}, 401
 
-    return {'errors': ['Unauthorized']}, 401
+    # return {'errors': ['Unauthorized']}, 401
+
+    # return {'errors': {'message': 'Unauthorized'}}, 401
