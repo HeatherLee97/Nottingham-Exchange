@@ -4,6 +4,7 @@ import StockDetails from '../components/StockDetailsPage/StockDetails';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
+import OrdersPage from '../components/OrdersPage/OrdersPage';
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "stock/:stockSymbol", 
         element: <StockDetails />,
+      },
+      {
+        path: "orders", 
+        element: <OrdersPage />,
       },
     //   {
     //     path: "dashboard", 
