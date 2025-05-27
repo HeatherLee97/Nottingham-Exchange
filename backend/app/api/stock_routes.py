@@ -61,11 +61,12 @@ def get_stock_info(stock_symbol):
 def get_stock_history(stock_symbol):
 
     symbol = stock_symbol.upper()
-    interval = '1h'
-    period = '1mo'
+    interval = '1d'
+    period = '5d'
 
     try:
         data = yf.download(tickers=symbol, period=period, interval=interval)
+        print(f"Downloaded data shape: {data.shape}")
         if data.empty:
             return jsonify({'error': 'No data found for this stock'}), 404
 

@@ -4,52 +4,17 @@ import StockChart from './StockChart';
 import './StockDetails.css';
 
 const StockDetails = () => {
-  const [chartData, setChartData] = useState([]);
-  const [quantity, setQuantity] = useState('');
-  const [currentPrice, setCurrentPrice] = useState(null);
-  const { stockSymbol } = useParams();
- 
-
-  useEffect(() => {
-    const fetchChartData = async () => {
-      try {
-        const response = await fetch(`/api/stock_routes/${stockSymbol}/history`);
-        const rawData = await response.json();
-
-        const transformedData = [
-          {
-            label: stockSymbol,
-            data: rawData.prices.map(({ timestamp, price }) => ({
-              date: new Date(timestamp),
-              value: price,
-            })),
-          },
-        ];
-
-        setChartData(transformedData);
-      } catch (error) {
-        console.error('Failed to fetch chart data:', error);
-      }
-    };
-
-    fetchChartData();
-  }, [stockSymbol]);
-
-  useEffect(() => {
-    const fetchPrice = async () => {
-      try {
-        const res = await fetch(`/api/stock_routes/price/${stockSymbol}`);
-        const data = await res.json();
-        setCurrentPrice(data.liveStockPrice);
-      } catch (err) {
-        console.error("Failed to fetch live price:", err);
-      }
-    };
-  
-    fetchPrice();
-  }, [stockSymbol]);
-
-  
+    const chartData = [
+      {
+        label: 'AALC',
+        data: [
+          { date: new Date('2025-05-13'), value: 170 },
+          { date: new Date('2025-05-14'), value: 174 },
+          { date: new Date('2025-05-15'), value: 169 },
+          { date: new Date('2025-05-16'), value: 175 },
+        ],
+      },
+    ];
 
 
   const handleBuy = async () => {
@@ -61,7 +26,7 @@ const StockDetails = () => {
 
     const price_per_share = currentPrice; 
   
-    const response = await fetch('/api/order_routes/orders', {
+    const response = await fetch('/api/orders/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

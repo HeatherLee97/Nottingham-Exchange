@@ -29,10 +29,10 @@ def create_order():
     if not validate_funds(user, total_cost):
         return {'error': 'Insufficient funds'}, 403
 
-    # Deduct funds
+ 
     user.wallet -= total_cost
 
-    # Create order
+
     new_order = Order(
         user_id=user.id,
         stock_symbol=stock_symbol,
@@ -75,7 +75,7 @@ def update_order(order_id):
     if diff > 0 and not validate_funds(user, diff):
         return {'error': 'Insufficient funds to increase order'}, 403
 
-    # Adjust wallet funds
+
     user.wallet -= diff
     order.quantity = new_quantity
 
