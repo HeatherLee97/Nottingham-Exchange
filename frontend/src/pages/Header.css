@@ -1,0 +1,37 @@
+.header__wrapper {
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    display: flex;
+}
+
+.header__logo {
+    margin-left: 48px;
+}
+
+.header__search {
+    display: flex;
+    height: 40px;
+    padding: 10 px;
+    align-items: center;
+}
+
+.header__searchContainer {
+    height: 20px;
+    border: 1px solid #31363a;
+    border-radius: 4px;
+    width: 375px;
+    color: white;
+}
+.header__searchContainer > input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.header__searchContainer > input:focus {
+    outline: none;
+}

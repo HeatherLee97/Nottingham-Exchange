@@ -19,12 +19,15 @@ export const router = createBrowserRouter([
         element: <SignupFormPage />,
       },
       {
+
         path: "stocks",
         element: <StockDetails />,
       },
       {
         path: "dashboard", // Add the Dashboard route
-        element: <Dashboard />,
+
+        path: "dashboard",
+
       },
     ],
   },
