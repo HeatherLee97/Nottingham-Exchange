@@ -1,3 +1,5 @@
+
+
 .profile-dropdown {
   position: absolute;
 }
@@ -28,7 +30,7 @@
   padding: 0px 10px;
   font-size: 15px;
   text-decoration: none;
-  color: black;
+  color: rgb(146, 91, 172);
   font-weight: 700;
 }
 
