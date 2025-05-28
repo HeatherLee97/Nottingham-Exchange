@@ -5,6 +5,8 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import OrdersPage from '../components/OrdersPage/OrdersPage';
+import StockList from '../components/StockDetailsPage/StockList';
+import '../index.css'
 
 
 const router = createBrowserRouter([
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignupFormPage />,
+      },
+      {
+        path: "stocks", 
+        element: <StockList />,
       },
       {
         path: "stock/:stockSymbol", 

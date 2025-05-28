@@ -1,59 +1,15 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { spend } from '../../redux/wallet';
 import { addOrder } from '../../redux/orders';
 import StockChart from './StockChart';
+import { addToWatchlist } from '../../redux/watchlist';
 import './StockDetails.css';
+import fakeStocks from '../FakeStocks';
 
 
-const fakeStocks = {
-  AAPL: {
-    name: 'Apple Inc.',
-    currentPrice: 175.02,
-    chartData: [
-      {
-        label: 'AAPL',
-        data: [
-          { date: new Date('2025-05-13'), value: 170 },
-          { date: new Date('2025-05-14'), value: 174 },
-          { date: new Date('2025-05-15'), value: 169 },
-          { date: new Date('2025-05-16'), value: 175 },
-        ],
-      },
-    ],
-  },
-  TSLA: {
-    name: 'Tesla Inc.',
-    currentPrice: 241.88,
-    chartData: [
-      {
-        label: 'TSLA',
-        data: [
-          { date: new Date('2025-05-13'), value: 230 },
-          { date: new Date('2025-05-14'), value: 235 },
-          { date: new Date('2025-05-15'), value: 238 },
-          { date: new Date('2025-05-16'), value: 241 },
-        ],
-      },
-    ],
-  },
-  AMZN: {
-    name: 'Amazon.com Inc.',
-    currentPrice: 124.53,
-    chartData: [
-      {
-        label: 'AMZN',
-        data: [
-          { date: new Date('2025-05-13'), value: 120 },
-          { date: new Date('2025-05-14'), value: 122 },
-          { date: new Date('2025-05-15'), value: 123 },
-          { date: new Date('2025-05-16'), value: 124.53 },
-        ],
-      },
-    ],
-  },
-};
+
 
 const StockDetails = () => {
   const { stockSymbol } = useParams();
@@ -106,7 +62,7 @@ const StockDetails = () => {
           onChange={(e) => setQuantity(e.target.value)}
         />
         <button onClick={handleBuy}>Buy</button>
-        <button className="watch-button">Watch</button>
+        <button className="watch-button" onClick={() => dispatch(addToWatchlist(stockSymbol.toUpperCase()))}>Watch</button>
       </div>
       {showConfirmation && (
   <div className="confirmation">
