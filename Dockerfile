@@ -66,7 +66,7 @@ RUN pip install psycopg2[binary]
 # Copy the requirements.txt -> used to get deps for the python backend
 COPY ./backend/requirements.txt ./backend/
 # Install the python deps: Note. We can use pip in docker
-RUN pip install -r ./backend/requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy the bin folder -> used for boot up commands
 COPY ./bin ./bin
