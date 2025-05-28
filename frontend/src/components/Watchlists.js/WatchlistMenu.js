@@ -1,9 +1,9 @@
 import EditWatchlistForm from '../EditWatchlistForm';
-import React, { useEffect, useState } from 'react';
-import { useDispatch,useSelector} from 'react-redux';
-import { deleteStockFromWatchlist, deleteWatchlistReducer } from '../../store/portfolio/watchlist';
+import React, { useState } from 'react';
+import { useDispatch} from 'react-redux';
+import { deleteWatchlistReducer } from '../../store/portfolio/watchlist';
 function WatchlistMenu({watchlist}){
-    const [activeEditWatchlist,setActiveEditWatchlist] = useState(null)
+    const [setActiveEditWatchlist] = useState(null)
 
     const [showEditModal,setShowEditModal] = useState(false)
     const dispatch = useDispatch();

@@ -1,75 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import CreateWatchlistForm from '../CreateWatchlistform';
 import Watchlist from './Watchlist';
-import { deleteStockFromWatchlist, deleteWatchlistReducer } from '../../store/portfolio/watchlist';
+// import { deleteStockFromWatchlist, deleteWatchlistReducer } from '../../store/portfolio/watchlist';
 import 'react-tabs/style/react-tabs.css';
 import './Watchlist.css';
-import EditWatchlistForm from '../EditWatchlistForm';
+// import EditWatchlistForm from '../EditWatchlistForm';
 
-import WatchlistMenu from './WatchlistMenu';
+// import WatchlistMenu from './WatchlistMenu';
 
 const WatchlistList = ({ quotes }) => {
-  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [showCreateWatchlistForm, changeCreateWatchlistForm] = useState(true);
-  const [createWatchlistText, setCreateWatchlistText] = useState('New Watchlist');
-  const [activeEditWatchlist, setActiveEditWatchlist] = useState(null);
-  const [activeMenu, setActiveMenu] = useState(null);
-  const [isOpen, setOpen] = useState(false);
+  const [showEditModal] = useState(false);
+  const [showCreateWatchlistForm] = useState(true);
+  const [createWatchlistText] = useState('New Watchlist');
+  // const [activeEditWatchlist, setActiveEditWatchlist] = useState(null);
+  
+  // const [isOpen, setOpen] = useState(false);
 
-  const watchlists = Object.values(useSelector(state => state.portfolio.watchlists));
+  // const watchlists = Object.values(useSelector(state => state.portfolio.watchlists));
 
-  const toggleCreateWatchlistForm = async e => {
-    setShowModal(true);
-    changeCreateWatchlistForm(!showCreateWatchlistForm);
-  };
+  // const toggleCreateWatchlistForm = async e => {
+  //   setShowModal(true);
+  //   changeCreateWatchlistForm(!showCreateWatchlistForm);
+  // };
 
-  const toggleShowEditModal = (e, watchlist) => {
-    setShowEditModal(true);
-    
-    setActiveEditWatchlist(watchlist);
-    
-  };
-  const deleteWatchlist = async (e, watchlist) => {
-    await dispatch(deleteWatchlistReducer(watchlist.id));
-  };
+  // const deleteWatchlist = async (e, watchlist) => {
+  //   await dispatch(deleteWatchlistReducer(watchlist.id));
+  // };
 
-  const toggleIsOpen = e => {
-    setOpen(!isOpen);
-  };
-  let editForm;
-  let menu;
   if (showEditModal) {
-    editForm = (
-      <EditWatchlistForm
-        watchlist={activeEditWatchlist}
-        showModal={showEditModal}
-        setShowModal={setShowEditModal}
-      ></EditWatchlistForm>
-    );
   }
   if (isOpen) {
-    menu = <WatchlistMenu watchlist={activeEditWatchlist}></WatchlistMenu>;
   }
   return (
     <div className='watchlist_List_Container'>
       <div>
-        <button className={'createWatchlistButton'} onClick={toggleCreateWatchlistForm}>
+        <button className={'createWatchlistButton'} onClick={showCreateWatchlistForm}>
           {createWatchlistText}
         </button>
         {showModal && (
           <CreateWatchlistForm
-            hideform={toggleCreateWatchlistForm}
+            hideform={showCreateWatchlistForm}
             showModal={showModal}
             setShowModal={setShowModal}
           ></CreateWatchlistForm>
         )}
       </div>
 
-      {watchlists &&
-        watchlists.map(watchlist => {
+      {WatchlistList &&
+        Watchlist.map(watchlist => {
           return (
             <div
               key={'watchlist' + watchlist.id}
