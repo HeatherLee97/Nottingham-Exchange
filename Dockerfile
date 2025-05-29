@@ -88,4 +88,5 @@ EXPOSE 5000
 # - upgrade migrations
 # - redo seeds
 # start the flask server
-CMD ["bash", "./bin/start.sh"]
+
+CMD gunicorn app:app

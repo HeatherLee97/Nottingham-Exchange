@@ -7,7 +7,7 @@ from flask_login import LoginManager
 from .models import db, User, Order
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
-from .api.order_routes import order_routes
+from .api.orders_routes import orders_routes
 from .api.stock_routes import stock_routes
 from .seeds import seed_commands
 from .config import Config
@@ -89,3 +89,6 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+
+
