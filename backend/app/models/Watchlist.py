@@ -1,6 +1,6 @@
 from sqlalchemy.orm import validates, relationship
 from sqlalchemy.types import Integer, String
-from .db import db, environment, watchlists_stocks, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import declarative_mixin
 # from .user import User
 # from .stock import Stock
@@ -25,7 +25,7 @@ class Watchlist(db.Model, TimestampMixin):
     # stock_symbol = db.Column(db.String(5), nullable=False,)
 
     owner = relationship("User", back_populates="watchlists")
-    stocks = relationship("Stock", secondary=watchlists_stocks, back_populates="watchlists" )
+    # stocks = relationship("Stock", secondary=watchlists_stocks, back_populates="watchlists" )
 
     def to_dict(self):
         return {
