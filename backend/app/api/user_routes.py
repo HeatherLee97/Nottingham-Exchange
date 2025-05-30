@@ -73,39 +73,40 @@ def buy_user_stocks(user_id, symbol):
         and_(UserStock.owner_id == user.id, UserStock.stock_symbol == stock_symbol)).first()
 
     if user_stock:
-    total_shares = user_stock.total_shares + shares_bought
-    total_invested = user_stock.total_invested + (shares_bought * price_per_share)
-    average_price = total_invested / total_shares
+        total_shares = user_stock.total_shares + shares_bought
+        total_invested = user_stock.total_invested + (shares_bought * price_per_share)
+        average_price = total_invested / total_shares
+        
+        user_stock.total_shares = total_shares
+        user_stock.total_invested = total_invested
+        user_stock.average_price_per_share = average_price
+        
+        isStock = Stock.query.filter(Stock.stock_symbol == stock_symbol).first()
+        
+        if isStock == None:
+            return {'error': "stock not found"}, 404
 
-    user_stock.total_shares = total_shares
-    user_stock.total_invested = total_invested
-    user_stock.average_price_per_share = average_price
+        if form.data['stock_shares'] is not None and form.data['stock_shares'] <= 0:
+            return {'error': "Shares or amount must be greater than 0"}, 400
 
-    isStock = Stock.query.filter(Stock.stock_symbol == stock_symbol).first()
-    if isStock == None:
-        return {'error': "stock not found"}, 404
-
-    if form.data['stock_shares'] is not None and form.data['stock_shares'] <= 0:
-        return {'error': "Shares or amount must be greater than 0"}, 400
-
-    if form.validate_on_submit():
-
-        subtract_buying_power = shares_bought * price_per_share
+        if form.validate_on_submit():
+            subtract_buying_power = shares_bought * price_per_share
 
         if subtract_buying_power > user.buying_power:
             return {'error': "Not enough buying power"}, 403
-
-        total_invested = price_per_share * shares_bought
-
-        new_transaction = Transaction(
-            owner_id=user.id,
-            stock_symbol=stock_symbol,
-            is_buy=True,
-            shares=shares_bought,
-            current_total_stock_shares=total_shares,
-            current_total_stock_investment=total_invested,
-            price_per_share=price_per_share
-        )
+            
+            total_invested = price_per_share * shares_bought
+            
+            new_transaction = Transaction(
+                owner_id=user.id,
+                stock_symbol=stock_symbol,
+                is_buy=True,
+                shares=shares_bought,
+                current_total_stock_shares=total_shares,
+                current_total_stock_investment=total_invested,
+                price_per_share=price_per_share
+            )
+        
         new_user_stock = UserStock(
             owner_id = user.id,
             stock_symbol = stock_symbol,
@@ -125,7 +126,8 @@ def buy_user_stocks(user_id, symbol):
             'userStock': new_user_stock.to_dict(),
             'message': "Shares bought"
         }, 200
-    return {'error': "transaction failed please enter valid inputs"}, 404
+        
+        return {'error': "transaction failed please enter valid inputs"}, 404
 
 
 @user_routes.route('/<int:user_id>/stocks/<int:stock_id>', methods=['PUT'])
@@ -166,41 +168,42 @@ def update_user_stocks(user_id, stock_id):
             subtract_wallet = stock_shares_bought * price_per_share
             if subtract_wallet > user.wallet:
                 return {'error': "Not enough in wallet"}, 403
-            added_total_shares = user_stock.total_shares + stock_shares_bought
-            user_stock.total_shares = added_total_shares
+                
+                added_total_shares = user_stock.total_shares + stock_shares_bought
+                user_stock.total_shares = added_total_shares
 
             # change average price per share
-            total_invested = (user_stock.total_invested +
-                              (price_per_share * stock_shares_bought))
-            user_stock.total_invested = total_invested
-            user_stock.average_price_per_share = total_invested / added_total_shares
+                total_invested = (user_stock.total_invested + (price_per_share * stock_shares_bought))
+                user_stock.total_invested = total_invested
+                user_stock.average_price_per_share = total_invested / added_total_shares
 
             # change user buying power
-            new_wallet = user.wallet - subtract_wallet
-            user.wallet = float(format(new_wallet, '.2f'))
+                new_wallet = user.wallet - subtract_wallet
+                user.wallet = float(format(new_wallet, '.2f'))
 
-            new_transaction = Transaction(
-                owner_id = user.id,
-                stock_symbol = stock_symbol,
-                is_buy = True,
-                shares = stock_shares_bought,
-                current_total_stock_shares = added_total_shares,
-                current_total_stock_investment = total_invested,
-                price_per_share = price_per_share
-            )
-            db.session.add(new_transaction)
-            db.session.commit()
+                new_transaction = Transaction(
+                    owner_id = user.id,
+                    stock_symbol = stock_symbol,
+                    is_buy = True,
+                    shares = stock_shares_bought,
+                    current_total_stock_shares = added_total_shares,
+                    current_total_stock_investment = total_invested,
+                    price_per_share = price_per_share
+                )
+                
+                db.session.add(new_transaction)
+                db.session.commit()
 
-            return {
-                'message': "Shares bought successfully",
-                'userStock': user_stock.to_dict()
-            }, 200
+                return {
+                    'message': "Shares bought successfully",
+                    'userStock': user_stock.to_dict()
+                }, 200
 
         # subtract the stock shares sold and update user buying power
-        if stock_shares_sold:
+                if stock_shares_sold:
 
             # subtract sold shares number form total shares of stock
-            subtracted_total_shares = user_stock.total_shares - stock_shares_sold
+                    subtracted_total_shares = user_stock.total_shares - stock_shares_sold
 
             #if user inputs more stocks to be sold than user has for stock then all owned stocks are sold
             if subtracted_total_shares <= 0:

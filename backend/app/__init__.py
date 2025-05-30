@@ -7,12 +7,12 @@ from flask_login import LoginManager
 from .models import db, User, Order
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
-from .api.order_routes import order_routes
-from .api.stock_routes import stock_routes
+from app.api.orders_routes import orders_routes
+from .api.stocks_routes import stocks_routes
 from .seeds import seed_commands
 from .config import Config
 
-app = Flask(__name__, static_folder='../../frontend/dist', static_url_path='/')
+app = Flask(__name__, static_folder='../../react-vite/dist', static_url_path='/')
 
 # Setup login manager
 login = LoginManager(app)
@@ -30,8 +30,8 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
-app.register_blueprint(order_routes, url_prefix='/api/orders')
-app.register_blueprint(stock_routes, url_prefix='/api/stocks')
+app.register_blueprint(orders_routes, url_prefix='/api/orders')
+app.register_blueprint(stocks_routes, url_prefix='/api/stocks')
 db.init_app(app)
 Migrate(app, db)
 
@@ -89,3 +89,6 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+
+
