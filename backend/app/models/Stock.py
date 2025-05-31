@@ -3,7 +3,7 @@ from sqlalchemy.types import Integer, String, Boolean
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import declarative_mixin
 # from .watchlist import Watchlist
-import json
+
 
 
 
@@ -14,8 +14,10 @@ class Stock(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    stock_symbol = db.Column(db.String(255), nullable=False)
+    stock_ticker = db.Column(db.String(255), nullable=False)
     company_name = db.Column(db.String(255), nullable=False)
+    price_per_share = db.Column(db.Float, nullable=False, default=0.0)
+
 
     # watchlists = relationship("Watchlist", secondary=watchlists_stocks, back_populates="stocks")
 
@@ -25,5 +27,6 @@ class Stock(db.Model):
         return {
             'id': self.id,
             'stockSymbol': self.stock_symbol,
-            'companyName': self.company_name
+            'companyName': self.company_name,
+            'pricePerShare': self.price_per_share
         }

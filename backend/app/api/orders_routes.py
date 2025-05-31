@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Order, User
-from app.forms.BuyStockForm import BuyStockForm
+from app.forms.buy_stock_form import BuyStockForm
 
 orders_routes = Blueprint('orders', __name__)
 
@@ -19,7 +19,7 @@ def create_order():
     if not form.validate_on_submit():
         return {'errors': form.errors}, 400
 
-    stock_symbol = form.stock_symbol.data.upper()
+    stock_ticker = form.stock_ticker.data.upper()
     quantity = form.stock_shares.data
     price_per_share = form.price_per_share.data
     total_cost = quantity * price_per_share
@@ -34,10 +34,11 @@ def create_order():
 
 
     new_order = Order(
-        user_id=user.id,
-        stock_symbol=stock_symbol,
+        user_id=user.id,  
+        stock_ticker=stock_ticker,
         quantity=quantity,
         price_per_share=price_per_share,
+        total_cost=total_cost,
         status="pending"
     )
 
