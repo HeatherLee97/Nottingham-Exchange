@@ -1,5 +1,6 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
+from .orders import seed_orders, undo_orders
 
 from app.models.db import db, environment, SCHEMA
 
