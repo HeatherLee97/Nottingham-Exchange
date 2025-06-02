@@ -12,27 +12,30 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  if (sessionUser) return <Navigate to="/watchlist" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const serverResponse = dispatch(
+    const serverResponse = await dispatch(
       thunkLogin({
         email,
         password,
       })
     );
 
-    if (serverResponse) {
-      setErrors(serverResponse);
+    if (serverResponse && serverResponse.errors) {
+      setErrors(serverResponse.errors);
     } else {
-      navigate("/");
+      navigate("/stocks");
     }
-  };
+  }
 
   return (
-    <>
+    <div className="login-page-container">
+      <div className="login-form-header">
+        
+      </div>
       <h1>Log In</h1>
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
@@ -59,7 +62,9 @@ function LoginFormPage() {
         {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
       </form>
-    </>
+    </div>
+      
+    
   );
 }
 

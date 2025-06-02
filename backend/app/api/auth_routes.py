@@ -1,21 +1,10 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, request
 from app.models import User, db
 from app.forms import LoginForm
-from app.forms import SignUpForm
+from app.forms import signup_form as SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
-
-
-def validation_errors_to_error_messages(validation_errors):
-    """
-    Simple function that turns the WTForms validation errors into a simple list
-    """
-    errorMessages = []
-    for field in validation_errors:
-        for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
-    return errorMessages
 
 
 @auth_routes.route('/')
@@ -25,7 +14,7 @@ def authenticate():
     """
     if current_user.is_authenticated:
         return current_user.to_dict()
-    return {'errors': ['Unauthorized']}
+    return {'errors': {'message': 'Unauthorized'}}, 401
 
 
 @auth_routes.route('/login', methods=['POST'])
@@ -42,7 +31,7 @@ def login():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return form.errors, 401
 
 
 @auth_routes.route('/logout')
@@ -59,23 +48,19 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
-    form = SignUpForm()
+    form = SignUpFormPage()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
-            first_name=form.data['first_name'],
-            last_name=form.data['last_name'],
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password'],
-            wallet=form.data['wallet'],
-            total_funds = form.data['total_funds']
+            password=form.data['password']
         )
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return form.errors, 401
 
 
 @auth_routes.route('/unauthorized')
@@ -83,4 +68,4 @@ def unauthorized():
     """
     Returns unauthorized JSON when flask-login authentication fails
     """
-    return {'errors': ['Unauthorized']}, 401
+    return {'errors': {'message': 'Unauthorized'}}, 401
