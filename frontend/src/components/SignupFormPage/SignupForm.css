@@ -1,9 +1,15 @@
-.signup-form-page-container {
-    width: 400px;
-    height: 230px;
-    border-radius: 10px;
+.signup-form-page {
+    width: 100%;
+    min-height: 100vh;
     display: flex;
-}
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/Users/myrandathompson/Desktop/nottinghamexchange/frontend/public/images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 
 .submit-button-loginform {
     background-color: purple;
