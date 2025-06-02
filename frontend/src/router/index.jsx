@@ -15,15 +15,11 @@ const router = createBrowserRouter([
         children: [
       {
         path: "/",
-        element: <h1>Welcome!</h1>,
+        element: <SignupFormPage />,
       },
       {
         path: "login",
         element: <LoginFormPage />,
-      },
-      {
-        path: "signup",
-        element: <SignupFormPage />,
       },
       {
         path: "stocks", 

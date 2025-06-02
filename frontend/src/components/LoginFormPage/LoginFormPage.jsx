@@ -12,12 +12,12 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  if (sessionUser) return <Navigate to="/watchlist" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const serverResponse = dispatch(
+    const serverResponse = await dispatch(
       thunkLogin({
         email,
         password,

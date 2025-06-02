@@ -74,7 +74,7 @@ def update_order(order_id):
     diff = new_total - old_total
 
     if diff > 0 and not validate_funds(user, diff):
-        return {'error': 'Insufficient funds to increase order'}, 403
+        return {'error': 'Insufficient funds to increase order'}, 401
 
 
     user.wallet -= diff

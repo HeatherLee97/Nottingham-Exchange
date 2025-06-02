@@ -13,7 +13,7 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  if (sessionUser) return <Navigate to="/stocks" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ function SignupFormPage() {
       });
     }
 
-    const serverResponse = await dispatch(
+    const serverResponse = dispatch(
       thunkSignup({
         email,
         username,
@@ -33,15 +33,14 @@ function SignupFormPage() {
       })
     );
 
-    if (serverResponse) {
-      setErrors(serverResponse);
+    if (serverResponse && serverResponse.errors) {
+      setErrors(serverResponse.errors);
     } else {
-      navigate("/");
+      navigate("/stocks");
     }
-  };
-
+  }
   return (
-    <>
+    <div className="signup-form-page">
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={handleSubmit}>
@@ -87,8 +86,9 @@ function SignupFormPage() {
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
+      
+    
   );
 }
-
 export default SignupFormPage;

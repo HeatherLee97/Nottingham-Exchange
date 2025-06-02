@@ -1,0 +1,33 @@
+.signup-form-page-container {
+    width: 400px;
+    height: 230px;
+    border-radius: 10px;
+    display: flex;
+}
+
+.submit-button-loginform {
+    background-color: purple;
+    color: white;
+    width: 95%;
+}
+.login-form-header {
+    text-align: center;
+    color: chartreuse;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+.loginform-modal-words {
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+.loginform-container {
+    border: 1px solid purple;
+    margin-top: 4%;
+}
+
+.separate-line {
+    border: 1px solid purple;
+    margin-top: 4%;
+}

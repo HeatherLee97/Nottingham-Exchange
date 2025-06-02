@@ -1,0 +1,23 @@
+.loginform-container {
+    width: 400px;
+    height: 230px;
+    border-radius: 10px;
+    color: chartreuse;
+}
+
+.submit-button-loginform {
+    background-color: purple;
+    color: white;
+    width: 95%;
+}
+
+.loginform-modal-words {
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+separate-line {
+    border: 1px solid purple;
+    margin-top: 4%;
+}
