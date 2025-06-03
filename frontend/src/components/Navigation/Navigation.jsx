@@ -11,13 +11,13 @@ function Navigation() {
                   <input placeholder="Search" type="text" />
             </div>
       
-      <div className="header__menuItems">
-            <a href="#">Free Stocks</a>
+      {/* <div className="header__menuItems">
+            <a href="#">Stocks</a>
             <a href="#">Portfolio</a>
-            <a href="#">Cash</a>
+            <a href="#">Wallet</a>
             <a href="#">Messages</a>
             <a href="#">Account</a>
-        </div>
+        </div> */}
       </div>
     <ul>
       
